@@ -1,6 +1,7 @@
 require 'active_support'
 
 class UrlStore
+  VERSION = File.read( File.join(File.dirname(__FILE__),'..','VERSION') ).strip
   SECRET = 'asdkasjlwqjdqaccxnjkasdfh2313'
   METHOD = 'SHA1'
 

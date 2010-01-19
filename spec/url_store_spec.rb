@@ -33,4 +33,8 @@ describe UrlStore do
     UrlStore.secret = 'xxx'
     UrlStore.decode(encoded).should == nil
   end
+
+  it "has a VERSION" do
+    UrlStore::VERSION.should =~ /^\d+\.\d+\.\d+$/
+  end
 end
