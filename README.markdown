@@ -1,4 +1,4 @@
-Secure url storage.
+Data securely stored in urls.
 
 Install
 =======

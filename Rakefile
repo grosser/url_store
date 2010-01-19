@@ -7,7 +7,7 @@ begin
   project_name = 'url_store'
   Jeweler::Tasks.new do |gem|
     gem.name = project_name
-    gem.description = gem.summary = "Secure url storage."
+    gem.description = gem.summary = "Data securely stored in urls."
     gem.email = "grosser.michael@gmail.com"
     gem.homepage = "http://github.com/grosser/#{project_name}"
     gem.authors = ["Michael Grosser"]
