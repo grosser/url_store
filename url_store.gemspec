@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Michael Grosser"]
   s.date = %q{2010-01-19}
-  s.description = %q{Secure url storage.}
+  s.description = %q{Data securely stored in urls.}
   s.email = %q{grosser.michael@gmail.com}
   s.extra_rdoc_files = [
     "README.markdown"
@@ -18,15 +18,17 @@ Gem::Specification.new do |s|
   s.files = [
     "README.markdown",
      "Rakefile",
+     "VERSION",
      "lib/url_store.rb",
      "spec/spec_helper.rb",
-     "spec/url_store_spec.rb"
+     "spec/url_store_spec.rb",
+     "url_store.gemspec"
   ]
   s.homepage = %q{http://github.com/grosser/url_store}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
-  s.summary = %q{Secure url storage.}
+  s.summary = %q{Data securely stored in urls.}
   s.test_files = [
     "spec/spec_helper.rb",
      "spec/url_store_spec.rb"
