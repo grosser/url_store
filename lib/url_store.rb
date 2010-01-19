@@ -1,4 +1,4 @@
-require 'active_support'
+require 'url_store/compact_encoder'
 
 class UrlStore
   VERSION = File.read( File.join(File.dirname(__FILE__),'..','VERSION') ).strip
@@ -10,23 +10,18 @@ class UrlStore
   IN = '+/='
   OUT = '-_|'
 
-  cattr_accessor :secret
-  self.secret = SECRET
+  @@secret = SECRET
+  def self.secret=(x); @@secret=x; end
+  def self.secret; @@secret; end
 
   def self.encode(data)
-    string = encoder.generate(data)
-    string = string.sub('--', ';') # seperator of verifier
+    string = encoder.encode(data)
     string.to_s.tr(IN,OUT)
   end
 
   def self.decode(string)
     string = string.to_s.tr(OUT,IN) # convert to base64url <-> RFC4648
-    string = string.sub(';','--') # seperator of verifier
-    begin
-      encoder.verify(string)
-    rescue ActiveSupport::MessageVerifier::InvalidSignature
-      nil
-    end
+    encoder.decode(string)
   end
 
   private
@@ -35,6 +30,6 @@ class UrlStore
     if secret == SECRET
       warn "WARNING: you should not use the default secret! use UrlStore.secret='something'"
     end
-    ActiveSupport::MessageVerifier.new(secret, METHOD)
+    UrlStore::CompactEncoder.new(secret, METHOD)
   end
 end

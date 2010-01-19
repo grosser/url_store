@@ -41,6 +41,11 @@ describe UrlStore do
     UrlStore.encode(1)
   end
 
+  it "can compress" do
+    x = 'a'*100
+    UrlStore.encode(x).size.should <= x.size
+  end
+
   it "has a VERSION" do
     UrlStore::VERSION.should =~ /^\d+\.\d+\.\d+$/
   end
