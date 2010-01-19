@@ -3,8 +3,9 @@ require 'active_support'
 class UrlStore
   SECRET = 'asdkasjlwqjdqaccxnjkasdfh2313'
   METHOD = 'SHA1'
-#  IN = '+/='
-#  OUT = '-_|' # | is not url-safe if you ask ERB/CGI, but browsers accept it, (. is no good idea <-> could be misread as format)
+
+  # (convert to base64url <-> RFC4648) and '|'
+  # which is not url-safe if you ask ERB/CGI, but browsers accept it
   IN = '+/='
   OUT = '-_|'
 
@@ -19,7 +20,7 @@ class UrlStore
 
   def self.decode(string)
     string = string.to_s.tr(OUT,IN) # convert to base64url <-> RFC4648
-    string = string.sub(';','--')
+    string = string.sub(';','--') # seperator of verifier
     begin
       encoder.verify(string)
     rescue ActiveSupport::MessageVerifier::InvalidSignature
