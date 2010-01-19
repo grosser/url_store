@@ -3,7 +3,8 @@ require 'url_store/compact_encoder'
 class UrlStore
   VERSION = File.read( File.join(File.dirname(__FILE__),'..','VERSION') ).strip
   SECRET = 'asdkasjlwqjdqaccxnjkasdfh2313'
-  METHOD = 'SHA1'
+  HASHER = 'SHA1'
+  SERIALIZER = :marshal
 
   # (convert to base64url <-> RFC4648) and '|'
   # which is not url-safe if you ask ERB/CGI, but browsers accept it
@@ -13,6 +14,14 @@ class UrlStore
   @@secret = SECRET
   def self.secret=(x); @@secret=x; end
   def self.secret; @@secret; end
+
+  @@hasher = HASHER
+  def self.hasher=(x); @@hasher=x; end
+  def self.hasher; @@hasher; end
+
+  @@serializer = SERIALIZER
+  def self.serializer=(x); @@serializer=x; end
+  def self.serializer; @@serializer; end
 
   def self.encode(data)
     string = encoder.encode(data)
@@ -30,6 +39,6 @@ class UrlStore
     if secret == SECRET
       warn "WARNING: you should not use the default secret! use UrlStore.secret='something'"
     end
-    UrlStore::CompactEncoder.new(secret, METHOD)
+    UrlStore::CompactEncoder.new(secret, :hasher => hasher, :serializer => serializer)
   end
 end

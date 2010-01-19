@@ -1,10 +1,15 @@
 Data securely stored in urls.
 
+ - url-save output
+ - short codes through GZip
+ - serializing through :marshal :yaml
+ - hashing through DSS DSS1 MD2 MD4 MD5 MDC2 RIPEMD160 SHA SHA1 SHA224 SHA256 SHA384 SHA512
+
+
 Install
 =======
  - As gem: ` sudo gem install url_store `
  - As Rails plugin: ` script/plugin install git://github.com/grosser/url_store.git `
-
 
 Usage
 =====
@@ -20,6 +25,11 @@ Usage
     else
       raise 'FRAUD!'
     end
+
+### Options
+    UrlStore.secret = 'something random'
+    UrlStore.hasher = 'MD5' # default: 'SHA1'
+    UrlStore.serializer = :yaml # default: :marshal
 
 Author
 =======

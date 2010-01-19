@@ -46,6 +46,18 @@ describe UrlStore do
     UrlStore.encode(x).size.should <= x.size
   end
 
+  it "can serialize using a different method" do
+    old = UrlStore.encode(@data)
+    UrlStore.serializer = :yaml
+    UrlStore.encode(@data).size.should_not == old.size
+  end
+
+  it "can serialize using different hasher" do
+    old = UrlStore.encode(@data)
+    UrlStore.hasher = 'MD5'
+    UrlStore.encode(@data).size.should_not == old.size
+  end
+
   it "has a VERSION" do
     UrlStore::VERSION.should =~ /^\d+\.\d+\.\d+$/
   end

@@ -3,8 +3,10 @@ require 'zlib'
 
 class UrlStore
   class CompactEncoder
-    def initialize(secret, algorithm)
-      @secret = secret; @algorithm = algorithm
+    def initialize(secret, options={})
+      @secret = secret
+      @hasher = options[:hasher] || 'SHA1'
+      @serializer = options[:serializer] || :marshal
     end
 
     def encode(data)
@@ -26,15 +28,21 @@ class UrlStore
     private
 
     def serialize(data)
-      Marshal.dump data
+      case @serializer.to_sym
+      when :yaml then data.to_yaml
+      when :marshal then Marshal.dump(data)  
+      end
     end
 
     def deserialize(data)
-      Marshal.load data
+      case @serializer.to_sym
+      when :yaml then YAML.load(data)
+      when :marshal then Marshal.load(data)
+      end
     end
 
     def compress(data)
-      Base64.encode64( Zlib::Deflate.deflate data ).gsub("\n",'')
+      Base64.encode64( Zlib::Deflate.deflate(data)).gsub("\n",'')
     end
 
     def extract(data)
@@ -48,7 +56,7 @@ class UrlStore
     # stolen from ActiveSupport
     def digest(data)
       require 'openssl' unless defined?(OpenSSL)
-      OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new(@algorithm), @secret, data)
+      OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new(@hasher.to_s), @secret, data)
     end
   end
 end
