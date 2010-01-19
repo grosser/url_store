@@ -3,6 +3,7 @@ require 'cgi'
 
 describe UrlStore do
   before do
+    UrlStore.secret = 'not the standart sssecrettt1231231áßðáïíœï©óïœ©áßïáöððííïö'
     @data = {:x => 11212, :y => 'asdasda sdasdasdASDJKSAJDLSKDLKDS', 'asdasd' => 12312312, 12.12 => 123123212312123, :asdasdasd => '2134 adasdasóáößðóöáåöäóðáœ©öóöfóöåäfóöéåfó'}
   end
 
@@ -20,7 +21,7 @@ describe UrlStore do
   end
 
   it "uses a lot of different chars" do
-    UrlStore.encode(@data).split('').uniq.size.should >= 63
+    UrlStore.encode(@data).split('').uniq.size.should >= 62
   end
 
   it "uses url-save characters" do
@@ -32,6 +33,12 @@ describe UrlStore do
     encoded = UrlStore.encode(@data)
     UrlStore.secret = 'xxx'
     UrlStore.decode(encoded).should == nil
+  end
+
+  it "warns when default secret is used" do
+    UrlStore.secret = UrlStore::SECRET
+    UrlStore.should_receive(:warn)
+    UrlStore.encode(1)
   end
 
   it "has a VERSION" do

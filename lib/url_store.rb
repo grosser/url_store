@@ -32,6 +32,9 @@ class UrlStore
   private
 
   def self.encoder
+    if secret == SECRET
+      warn "WARNING: you should not use the default secret! use UrlStore.secret='something'"
+    end
     ActiveSupport::MessageVerifier.new(secret, METHOD)
   end
 end
