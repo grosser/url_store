@@ -8,6 +8,9 @@ Install
 
 Usage
 =====
+    # config (e.g environment.rb)
+    UrlStore.secret = 'adadasd2adsdasd4ads4eas4dea4dsea4sd'
+
     # View:
     <%= link_to 'paid', :controller=>:payments, :action=>:paid, :data=>UrlStore.encode(:id=>1, :status=>'paid')%>
 
