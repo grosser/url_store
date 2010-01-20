@@ -3,8 +3,8 @@ require 'zlib'
 
 class UrlStore
   class CompactEncoder
-    def initialize(secret, options={})
-      @secret = secret
+    def initialize(options={})
+      @secret = options[:secret] || raise('i need a :secret !!')
       @hasher = options[:hasher] || 'SHA1'
       @serializer = options[:serializer] || :marshal
     end

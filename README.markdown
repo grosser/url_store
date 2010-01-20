@@ -14,7 +14,7 @@ Install
 Usage
 =====
     # config (e.g environment.rb)
-    UrlStore.secret = 'adadasd2adsdasd4ads4eas4dea4dsea4sd'
+    UrlStore.defaults = {:secret => 'adadasd2adsdasd4ads4eas4dea4dsea4sd'}
 
     # View:
     <%= link_to 'paid', :controller=>:payments, :action=>:paid, :data=>UrlStore.encode(:id=>1, :status=>'paid') %>
@@ -26,12 +26,13 @@ Usage
       raise 'FRAUD!'
     end
 
-### Options
-    UrlStore.secret = 'something random'
-    UrlStore.hasher = 'MD5' # default: 'SHA1'
-    UrlStore.serializer = :yaml # default: :marshal
+### Defaults
+    UrlStore.defaults = {:secret => 'something random'} # ALWAYS use your own secret
+    UrlStore.defaults = {... , :hasher => 'MD5'} # default: 'SHA1'
+    UrlStore.defaults = {... , :serializer => :yaml} # default: :marshal
 
 ### Tips
+ - If you need multiple UrlStores, just use ` UrlStore.new(:secret => 'sadasd', ...) `
  - As long as you stay under 2k chars there should be no problems. [max url lengths per browser/server](http://www.boutell.com/newfaq/misc/urllength.html)
 
 Author

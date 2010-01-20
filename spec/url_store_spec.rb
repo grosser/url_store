@@ -3,7 +3,8 @@ require 'cgi'
 
 describe UrlStore do
   before do
-    UrlStore.secret = 'not the standart sssecrettt1231231áßðáïíœï©óïœ©áßïáöððííïö'
+    @secret = 'not the standart sssecrettt1231231áßðáïíœï©óïœ©áßïáöððííïö'
+    UrlStore.defaults = {:secret  => @secret}
     @data = {:x => 11212, :y => 'asdasda sdasdasdASDJKSAJDLSKDLKDS', 'asdasd' => 12312312, 12.12 => 123123212312123, :asdasdasd => '2134 adasdasóáößðóöáåöäóðáœ©öóöfóöåäfóöéåfó'}
   end
 
@@ -31,13 +32,13 @@ describe UrlStore do
 
   it "cannot decode with wrong secret" do
     encoded = UrlStore.encode(@data)
-    UrlStore.secret = 'xxx'
+    UrlStore.defaults = {:secret => 'xxx'}
     UrlStore.decode(encoded).should == nil
   end
 
   it "warns when default secret is used" do
-    UrlStore.secret = UrlStore::SECRET
-    UrlStore.should_receive(:warn)
+    UrlStore.defaults = {:secret => UrlStore::SECRET}
+    $stderr.should_receive(:write).at_least(1)
     UrlStore.encode(1)
   end
 
@@ -48,13 +49,13 @@ describe UrlStore do
 
   it "can serialize using a different method" do
     old = UrlStore.encode(@data)
-    UrlStore.serializer = :yaml
+    UrlStore.defaults = {:serializer => :yaml, :secret => @secret}
     UrlStore.encode(@data).size.should_not == old.size
   end
 
   it "can serialize using different hasher" do
     old = UrlStore.encode(@data)
-    UrlStore.hasher = 'MD5'
+    UrlStore.defaults = {:hasher => 'MD5', :secret => @secret}
     UrlStore.encode(@data).size.should_not == old.size
   end
 
