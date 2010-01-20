@@ -31,6 +31,9 @@ Usage
     UrlStore.hasher = 'MD5' # default: 'SHA1'
     UrlStore.serializer = :yaml # default: :marshal
 
+### Tips
+ - As long as you stay under 2k chars there should be no problems. [max url lengths per browser/server](http://www.boutell.com/newfaq/misc/urllength.html)
+
 Author
 =======
 [Michael Grosser](http://pragmatig.wordpress.com)  
