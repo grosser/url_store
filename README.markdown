@@ -34,6 +34,8 @@ Usage
 ### Tips
  - If you need multiple UrlStores, just use ` UrlStore.new(:secret => 'sadasd', ...) `
  - As long as you stay under 2k chars there should be no problems. [max url lengths per browser/server](http://www.boutell.com/newfaq/misc/urllength.html)
+ - Data is not (yet) encrypted, users could read(but not change) the encoded data
+ - Replay attacks are possible <-> add a timestamp to check the freshness of the encoded data
 
 Author
 =======
