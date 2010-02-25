@@ -5,6 +5,13 @@ Data securely stored in urls.
  - serializing through __:marshal__ :yaml
  - hashing through DSS DSS1 MD2 MD4 MD5 MDC2 RIPEMD160 SHA __SHA1__ SHA224 SHA256 SHA384 SHA512
 
+Great for:
+
+ - password reset links
+ - email unsubscribe links
+ - click tracking
+ - ...
+
 
 Install
 =======
