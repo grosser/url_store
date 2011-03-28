@@ -1,6 +1,6 @@
-task :default => :spec
-require 'spec/rake/spectask'
-Spec::Rake::SpecTask.new {|t| t.spec_opts = ['--color']}
+task :default do
+  sh "rspec spec/"
+end
 
 begin
   require 'jeweler'

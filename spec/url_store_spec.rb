@@ -22,7 +22,7 @@ describe UrlStore do
   end
 
   it "uses a lot of different chars" do
-    UrlStore.encode(@data).split('').uniq.size.should >= 62
+    UrlStore.encode(@data).split('').uniq.size.should >= 61
   end
 
   it "uses url-save characters" do
