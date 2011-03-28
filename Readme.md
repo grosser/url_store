@@ -10,13 +10,14 @@ Great for:
  - password reset links
  - email unsubscribe links
  - click tracking
+ - access control
  - ...
 
 
 Install
 =======
  - As gem: ` sudo gem install url_store `
- - As Rails plugin: ` script/plugin install git://github.com/grosser/url_store.git `
+ - As Rails plugin: ` rails plugin install git://github.com/grosser/url_store.git `
 
 Usage
 =====
@@ -46,6 +47,6 @@ Usage
 
 Author
 =======
-[Michael Grosser](http://pragmatig.wordpress.com)  
-grosser.michael@gmail.com  
+[Michael Grosser](http://grosser.it)<br/>
+michael@grosser.it<br/>
 Hereby placed under public domain, do what you want, just do not hold me accountable...
