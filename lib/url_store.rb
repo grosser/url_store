@@ -39,7 +39,7 @@ class UrlStore
   def encoder
     options = {:secret => SECRET}.merge(@options)
     if options[:secret] == SECRET
-      warn "WARNING: you should not use the default secret! use UrlStore.secret='something'"
+      warn "WARNING: You are using the default secret! Set your own with UrlStore.defaults = {:secret => 'something'}"
     end
     UrlStore::CompactEncoder.new(options)
   end
