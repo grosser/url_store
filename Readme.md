@@ -64,9 +64,12 @@ In controllers:
  - Data is not (yet) encrypted, users could read(but not change) the encoded data
  - Replay attacks are possible <-> add a timestamp to check the freshness of the encoded data
 
-Author
-======
+Authors
+=======
+
+### [Contributors](http://github.com/grosser/url_store/contributors)
+ - [Priit Haamer](http://prii.it)
 
 [Michael Grosser](http://grosser.it)<br/>
 michael@grosser.it<br/>
-Hereby placed under public domain, do what you want, just do not hold me accountable...
+Hereby placed under public domain, do what you want, just do not hold anyone accountable...
