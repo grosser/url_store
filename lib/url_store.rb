@@ -1,5 +1,7 @@
 require 'url_store/compact_encoder'
 
+require 'url_store/railtie' if defined?(::Rails) && ::Rails::VERSION::MAJOR >= 3
+
 class UrlStore
   VERSION = File.read( File.join(File.dirname(__FILE__),'..','VERSION') ).strip
   SECRET = 'asdkasjlwqjdqaccxnjkasdfh2313'
