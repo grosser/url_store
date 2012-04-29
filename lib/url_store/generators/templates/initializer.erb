@@ -1,1 +1,2 @@
-UrlStore.defaults = {:secret => '<%= ActiveSupport::SecureRandom.hex(16) %>'}
+<% generator = (defined?(SecureRandom) ? SecureRandom : ActiveSupport::SecureRandom) -%>
+UrlStore.defaults = {:secret => '<%= generator.hex(16) %>'}
