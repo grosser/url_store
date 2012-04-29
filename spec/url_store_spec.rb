@@ -1,5 +1,6 @@
-require File.dirname(__FILE__) + '/spec_helper'
-require 'cgi'
+# encoding: utf-8
+require "spec_helper"
+require "cgi"
 
 describe UrlStore do
   before do
