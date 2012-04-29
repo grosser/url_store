@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    url_store (0.3.2)
+    url_store (0.3.3)
 
 GEM
   remote: http://rubygems.org/
