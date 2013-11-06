@@ -4,6 +4,8 @@ describe UrlStore::CompactEncoder do
   before do
     @encoder = UrlStore::CompactEncoder.new(:secret => 'asdasdsa')
     @data = {:x => 1, 'asdadadadas' => 'asdasdadawvxcxcxcvjs', 'dasdasdadsadad' => 'asdasdwxczvvcjjkdfjkdf'}
+    @json_data = {'x' => 1, 'asdadadadas' => 'asdasdadawvxcxcxcvjs', 'dasdasdadsadad' => 'asdasdwxczvvcjjkdfjkdf'}
+    
   end
 
   it "generates same code for same data" do
@@ -22,6 +24,11 @@ describe UrlStore::CompactEncoder do
   it "can encode/decode with yaml" do
     @encoder = UrlStore::CompactEncoder.new(:secret => 'asdasdsa', :serializer => :yaml)
     @encoder.decode(@encoder.encode(@data)).should == @data
+  end
+
+  it "can encode/decode with json" do
+    @encoder = UrlStore::CompactEncoder.new(:secret => 'asdasdsa', :serializer => :json)
+    @encoder.decode(@encoder.encode(@json_data)).should == @json_data
   end
 
   it "can hash with other hasher" do
