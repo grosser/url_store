@@ -16,46 +16,48 @@ Great for:
 Install
 =======
 
-When using Rails 3, include it in your Gemfile:
-
-    gem 'url_store'
-
-When using Rails 2 or no rails at all:
-
-    sudo gem install url_store
-
-Or as Rails plugin:
-
-    rails plugin install git://github.com/grosser/url_store.git
+```Bash
+gem install url_store
+```
 
 Usage
 =====
 
 When on Rails, create config/initializers/url_store.rb using generator. A random secret will be generated for you:
 
-    rails generate url_store:initializer
+```Bash
+rails generate url_store:initializer
+```
 
 Or configure it by hand (e.g in environment.rb):
 
-    UrlStore.defaults = {:secret => 'adadasd2adsdasd4ads4eas4dea4dsea4sd'}
+```Ruby
+UrlStore.defaults = {:secret => 'adadasd2adsdasd4ads4eas4dea4dsea4sd'}
+```
 
 In Rails views:
 
-    <%= link_to 'paid', :controller =>:payments, :action=>:paid, :data=>UrlStore.encode(:id=>1, :status=>'paid') %>
+```Ruby
+<%= link_to 'paid', :controller =>:payments, :action=>:paid, :data=>UrlStore.encode(:id=>1, :status=>'paid') %>
+```
 
 In controllers:
 
-    if data = UrlStore.decode(params[:data])
-      Payment.find(data[:id]).update_attribute(:status, data[:status])
-    else
-      raise 'FRAUD!'
-    end
+```Ruby
+if data = UrlStore.decode(params[:data])
+  Payment.find(data[:id]).update_attribute(:status, data[:status])
+else
+  raise 'FRAUD!'
+end
+```
 
 ### Defaults
 
-    UrlStore.defaults = {:secret => 'something random'} # ALWAYS use your own secret
-    UrlStore.defaults = {... , :hasher => 'MD5'} # default: 'SHA1'
-    UrlStore.defaults = {... , :serializer => :yaml} # default: :marshal
+```Ruby
+UrlStore.defaults = {:secret => 'something random'} # ALWAYS use your own secret
+UrlStore.defaults = {... , :hasher => 'MD5'} # default: 'SHA1'
+UrlStore.defaults = {... , :serializer => :yaml} # default: :marshal
+```
 
 ### Tips
 
