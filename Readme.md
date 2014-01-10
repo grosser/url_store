@@ -60,7 +60,7 @@ UrlStore.defaults = {... , :serializer => :yaml} # default: :marshal
 ```
 
 ### Tips
-
+ - if you are on rails 4.1+ take a look at `Rails.application.message_verifier`, it provides a similar feature
  - If you need multiple UrlStores, just use ` UrlStore.new(:secret => 'sadasd', ...) `
  - As long as you stay under 2k chars there should be no problems. [max url lengths per browser/server](http://www.boutell.com/newfaq/misc/urllength.html)
  - Data is not (yet) encrypted, users could read(but not change) the encoded data
