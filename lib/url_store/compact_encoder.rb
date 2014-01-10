@@ -1,5 +1,6 @@
 require 'base64'
 require 'zlib'
+require 'yaml'
 
 class UrlStore
   class CompactEncoder
@@ -30,7 +31,7 @@ class UrlStore
     def serialize(data)
       case @serializer.to_sym
       when :yaml then data.to_yaml
-      when :marshal then Marshal.dump(data)  
+      when :marshal then Marshal.dump(data)
       end
     end
 
@@ -56,7 +57,7 @@ class UrlStore
     # stolen from ActiveSupport
     def digest(data)
       require 'openssl' unless defined?(OpenSSL)
-      OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new(@hasher.to_s), @secret, data)
+      OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new(@hasher.to_s), @secret, data)
     end
   end
 end
