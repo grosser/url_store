@@ -69,6 +69,7 @@ Authors
 
 ### [Contributors](http://github.com/grosser/url_store/contributors)
  - [Priit Haamer](http://prii.it)
+ - [Daniel Murphy](https://github.com/danielmurphy)
 
 [Michael Grosser](http://grosser.it)<br/>
 michael@grosser.it<br/>
