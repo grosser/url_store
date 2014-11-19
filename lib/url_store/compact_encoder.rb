@@ -1,5 +1,6 @@
 require 'base64'
 require 'zlib'
+require 'yaml'
 
 class UrlStore
   class CompactEncoder
@@ -58,7 +59,7 @@ class UrlStore
     # stolen from ActiveSupport
     def digest(data)
       require 'openssl' unless defined?(OpenSSL)
-      OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new(@hasher.to_s), @secret, data)
+      OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new(@hasher.to_s), @secret, data)
     end
   end
 end
