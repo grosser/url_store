@@ -32,6 +32,7 @@ class UrlStore
       case @serializer.to_sym
       when :yaml then data.to_yaml
       when :marshal then Marshal.dump(data)
+      when :json then JSON.dump(data)
       end
     end
 
@@ -39,6 +40,7 @@ class UrlStore
       case @serializer.to_sym
       when :yaml then YAML.load(data)
       when :marshal then Marshal.load(data)
+      when :json then JSON.load(data)
       end
     end
 
