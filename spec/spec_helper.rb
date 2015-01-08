@@ -1,5 +1,4 @@
-$LOAD_PATH << 'lib'
-require 'rubygems'
+require 'bundler/setup'
 require 'url_store'
 require 'yaml'
 require 'json'
