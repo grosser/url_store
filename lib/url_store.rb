@@ -7,8 +7,12 @@ class UrlStore
 
   # (convert to base64url <-> RFC4648) and '|'
   # which is not url-safe if you ask ERB/CGI, but browsers accept it
-  IN = '+/='
-  OUT = '-_|'
+  IN_0_3_5 = '+/='
+  OUT_0_3_5 = '-_|'
+
+  # Calendars on OSX does not like pipes. So we don't include them anymore.
+  IN = '+/'
+  OUT = '-_'
 
   @@defaults = {}
   def self.defaults=(x); @@defaults=x; end
@@ -31,7 +35,7 @@ class UrlStore
   end
 
   def decode(string)
-    string = string.to_s.tr(OUT,IN) # convert to base64url <-> RFC4648
+    string = string.to_s.tr(OUT_0_3_5,IN_0_3_5) # convert to base64url <-> RFC4648
     encoder.decode(string)
   end
 
